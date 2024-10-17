@@ -1,0 +1,5 @@
+default:
+  typst compile v1.typ
+
+watch:
+  typst watch v1.typ
