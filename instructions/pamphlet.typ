@@ -3,7 +3,7 @@
 #set text(size: 12.1pt)
 
 #let symbol(name) = {
-  box(baseline: 20%)[#image("images/"+name+"-svgrepo-com.svg", height: 13pt)]
+  box(baseline: 20%)[#image("images/"+name+".svg", height: 13pt)]
 }
 
 #let step(title, ingredients, comments, ..params) = {
@@ -11,7 +11,7 @@
   let split = params.named().at("split", default: 60%)
 
   box(
-    stroke: (paint: gray, thickness: 0.1pt),
+    stroke: (paint: gray, thickness: 0.5pt),
     radius: 5pt, inset: 5pt,
     width: width,
   )[
@@ -21,7 +21,7 @@
           columns: (split, 100% - split),
           stroke: (x,y) => (
             if x == 1 {
-              (left: (paint: gray, thickness: 0.1pt))
+              (left: (paint: gray, thickness: 0.5pt))
             } else {
               none
             }
@@ -47,7 +47,7 @@
 #let hstrike(frac) = {
   place[#line(
     start: (-5%, frac), end: (105%, frac),
-    stroke: (paint: gray.darken(-50%), thickness: 0.1pt)
+    stroke: (paint: gray.darken(-50%), thickness: 0.3pt)
   )]
 }
 #let top-third = 31.4%
@@ -58,7 +58,7 @@
 #assert(bot-third - top-third > 100% - bot-third)
 
 #step[
-  *Conservation* $(#symbol("jam-jar") <- #symbol("water-outline") + #symbol("sugar")"1cas" : #symbol("fridge") + #symbol("timer") <"7j")$
+  *Conservation* $(#symbol("jam") <- #symbol("water") + #symbol("sugar")"1cas" : #symbol("fridge") + #symbol("timer") <"7j")$
 ][
   Durée: 1 semaine au plus \
   Au frigo, dans un bocal hermétique (e.g. pot de confiture).
@@ -67,7 +67,7 @@
   dissoudre 1 cuillère à soupe de sucre. \
 ]
 #step[
-  *Préparation* $(#symbol("jar-water") <- #symbol("water-outline")"2L" + #symbol("sugar")"100g" + #symbol("lemon") + #symbol("fig"))$
+  *Préparation* $(#symbol("jug") <- #symbol("water")"2L" + #symbol("sugar")"100g" + #symbol("lemon") + #symbol("fig"))$
 ][
   Matériel:
   - bocal de plus de 2L à large goulot
@@ -89,7 +89,7 @@
 ]
 
 #step[
-  *Fermentation 1* $(#symbol("jar-water"): #symbol("timer")"48h")$
+  *Fermentation 1* $(#symbol("jug"): #symbol("timer")"48h")$
 ][
   Durée: 48h \
   Température ambiante, non hermétique, à l'abri du soleil.
@@ -98,7 +98,7 @@
   Si on a mis des figues elles remontent à la surface.
 ]
 #step[
-  *Filtrage* $(#symbol("pair-of-bottles") <- #symbol("leaf") + #symbol("strainer") <- #symbol("jar-water"))$
+  *Filtrage* $(#symbol("bottles") <- #symbol("leaf") + #symbol("filter") <- #symbol("jam"))$
 ][
   Matériel:
   - filtre à grosses mailles (1mm)
@@ -108,7 +108,7 @@
   Ingrédients, choisir un parmi:
   - sirop (25g pour 1L)
   - arômes séchés (menthe, hibiscus)
-  - fruits frais ()
+  - fruits frais (fraise, framboise)
 ][
   Retirer les tranches de citron et les figues.
   Filtrer les grains.
@@ -120,7 +120,7 @@
   Ajouter les arômes et fermer les bouteilles.
 ]
 #step[
-  *Fermentation 2* $(#symbol("pair-of-bottles"): #symbol("timer")"48h")$
+  *Fermentation 2* $(#symbol("bottles"): #symbol("timer")"48h")$
 ][
   Durée: 48h \
   Température ambiante, bouteille hermétique, à l'abri du soleil.
@@ -130,7 +130,7 @@
 ]
 
 #step[
-  *Stabilisation* $(#symbol("pair-of-bottles"): #symbol("fridge") + #symbol("timer")>"3j")$
+  *Maturation* $(#symbol("bottles"): #symbol("fridge") + #symbol("timer")>"3j")$
 ][
   Durée: au moins 3 jours \
   Au frigo, toujours en bouteille.
@@ -141,21 +141,23 @@
 #step(width: 71%)[
   *Remarques*
 ][
-  - Un cycle produit eviron 120g de grains pour 100g au départ.
-    Cela veut dire que tous les 5 cycles on peut faire don d'un lot.
+  - À l'issue d'un cycle de fermentation 1, on obtient environ 130g de grains pour 100g au départ.
+    Cela veut dire que tous les 3 à 4 cycles on peut faire don d'un lot.
     Cela signifie également qu'il faut repeser les grains au début de chaque
     cycle de fermentation pour en avoir bien 100g.
   - Il n'est ni nécessaire ni contre-indiqué de rincer occasionellement les grains.
-  - Utiliser du sucre aussi peu transformé que possible.
-    Préferer un citron BIO puisqu'on fait tremper y compris la peau.
+  - Utiliser du sucre BIO, aussi peu transformé que possible.
+  - Préferer un citron BIO puisqu'on fait tremper y compris la peau.
+  - Noter les dates de début de chaque cycle.
+    Il ne faut pas laisser fermenter plus longtemps que nécessaire.
 ][]
-#h(3mm)
+#h(2.4mm)
 #step(width: 27%)[][
   Neven Villani, \
   le 16 Octobre 2024, \
   à Saint Martin d'Hères
 
-  #v(14.5mm)
+  #v(26mm)
 
   Fait avec Typst. \
   #link("https://github.com/vanille-n/kefir")[`github:vanille-n/kefir`]
