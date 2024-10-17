@@ -1,0 +1,5 @@
+default:
+  typst compile pamphlet.typ
+
+watch:
+  typst watch pamphlet.typ
