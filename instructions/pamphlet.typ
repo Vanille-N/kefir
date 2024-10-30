@@ -1,6 +1,43 @@
+#import "@preview/cetz:0.3.0"
+
+#let preview = false
+
+#set page(background: {
+  if preview [
+    #let color = rgb("FFCBC4")
+    #place(center + horizon)[
+    #rotate(24deg,
+      text(70pt, fill: color)[
+        *PREVIEW*
+      ]
+    )
+    ]
+    #place(center + horizon)[
+      #rect(height: 96%, width: 96%, stroke: (paint: color, thickness: 3pt))
+    ]
+    #let hstrike(frac) = {
+      place[#line(
+        start: (-5%, frac), end: (105%, frac),
+        stroke: (paint: color, thickness: 3pt)
+      )]
+    }
+    #let top-third = 32%
+    #let bot-third = 69.5%
+    #hstrike(top-third)
+    #hstrike(bot-third)
+    #assert(bot-third - top-third > top-third)
+    #assert(bot-third - top-third > 100% - bot-third)
+  ]
+})
+
 #set page(margin: (x: 5mm, y: 5mm))
 #set par(justify: true)
 #set text(size: 12.1pt)
+
+#let color = (
+  highlight: black,
+  dim: gray.darken(20%),
+)
 
 #let symbol(name) = {
   box(baseline: 20%)[#image("images/"+name+".svg", height: 13pt)]
@@ -27,16 +64,16 @@
             }
           )
         )[
-          #text(size: 14pt, fill: blue.darken(60%))[#title] \
+          #text(size: 14pt, fill: color.highlight)[#title] \
           #ingredients
         ][
-          #text(fill: gray.darken(30%))[
+          #text(fill: color.dim)[
             #comments
           ]
         ]
       } else [
           #{ if repr(title) != repr([]) [
-            #text(size: 14pt, fill: blue.darken(60%))[#title] \
+            #text(size: 14pt, fill: color.highlight)[#title] \
           ] }
           #ingredients
       ]
@@ -44,21 +81,8 @@
   ]
 }
 
-#let hstrike(frac) = {
-  place[#line(
-    start: (-5%, frac), end: (105%, frac),
-    stroke: (paint: gray.darken(-50%), thickness: 0.3pt)
-  )]
-}
-#let top-third = 31.4%
-#let bot-third = 70.1%
-#hstrike(top-third)
-#hstrike(bot-third)
-#assert(bot-third - top-third > top-third)
-#assert(bot-third - top-third > 100% - bot-third)
-
 #step[
-  *Conservation* $(#symbol("jam") <- #symbol("water") + #symbol("sugar")"1cas" : #symbol("fridge") + #symbol("timer") <"7j")$
+  *0. Conservation* $(#symbol("jam") <- #symbol("water") + #symbol("sugar")"1cas" : #symbol("fridge") ; #symbol("timer") <"7j")$
 ][
   Durée: 1 semaine au plus \
   Au frigo, dans un bocal hermétique (e.g. pot de confiture).
@@ -67,7 +91,7 @@
   dissoudre 1 cuillère à soupe de sucre. \
 ]
 #step[
-  *Préparation* $(#symbol("jug") <- #symbol("water")"2L" + #symbol("sugar")"100g" + #symbol("lemon") + #symbol("fig"))$
+  *1. Préparation* $(#symbol("jug") <- #symbol("water")"2L" + #symbol("sugar")"100g" + #symbol("lemon") + #symbol("fig"))$
 ][
   Matériel:
   - bocal de plus de 2L à large goulot
@@ -75,7 +99,7 @@
 
   Ingrédients:
   - 2L d'eau
-  - 100g de grains
+  - 100g de grains de kéfir (égouttés mais pas secs)
   - 100g de sucre
   - 1 citron
   - (optionnel) quelques figues sèches
@@ -89,7 +113,7 @@
 ]
 
 #step[
-  *Fermentation 1* $(#symbol("jug"): #symbol("timer")"48h")$
+  *2. Fermentation 1* $(#symbol("jug"): #symbol("timer")"48h")$
 ][
   Durée: 48h \
   Température ambiante, non hermétique, à l'abri du soleil.
@@ -98,17 +122,17 @@
   Si on a mis des figues elles remontent à la surface.
 ]
 #step[
-  *Filtrage* $(#symbol("bottles") <- #symbol("leaf") + #symbol("filter") <- #symbol("jam"))$
+  *3. Filtrage* $(#symbol("bottles") <- #symbol("leaf") + [#symbol("jug") ~> #symbol("filter")])$
 ][
   Matériel:
   - filtre à grosses mailles (1mm)
-  - 2 à 3 bouteilles qui supportent la pression
+  - 2 à 3 bouteilles qui supportent la pression (e.g. limonade)
   - conseillé: entonnoir
 
   Ingrédients, choisir un parmi:
-  - sirop (25g pour 1L)
-  - arômes séchés (menthe, hibiscus)
-  - fruits frais (fraise, framboise)
+  - sirop (le plus facile) (25g pour 1L)
+  - arômes séchés (menthe / hibiscus)
+  - fruits frais (fraise / framboise)
 ][
   Retirer les tranches de citron et les figues.
   Filtrer les grains.
@@ -120,7 +144,7 @@
   Ajouter les arômes et fermer les bouteilles.
 ]
 #step[
-  *Fermentation 2* $(#symbol("bottles"): #symbol("timer")"48h")$
+  *4. Fermentation 2* $(#symbol("bottles"): #symbol("timer")"48h")$
 ][
   Durée: 48h \
   Température ambiante, bouteille hermétique, à l'abri du soleil.
@@ -130,7 +154,7 @@
 ]
 
 #step[
-  *Maturation* $(#symbol("bottles"): #symbol("fridge") + #symbol("timer")>"3j")$
+  *5. Maturation* $(#symbol("bottles"): #symbol("fridge") ; #symbol("timer")>"3j")$
 ][
   Durée: au moins 3 jours \
   Au frigo, toujours en bouteille.
@@ -138,27 +162,128 @@
   La fermentation est terminée.
   Peut se conserver au frigo jusqu'à 1 mois, ou 1 semaine après ouverture.
 ]
-#step(width: 71%)[
+#step[
   *Remarques*
 ][
-  - À l'issue d'un cycle de fermentation 1, on obtient environ 130g de grains pour 100g au départ.
-    Cela veut dire que tous les 3 à 4 cycles on peut faire don d'un lot.
+  #text(fill: color.dim)[
+  - À l'issue d'un cycle de fermentation, on obtient environ 130-140g de grains pour 100g au départ.
+    Cela veut dire que tous les 3 cycles environ on peut faire don d'un lot.
     Cela signifie également qu'il faut repeser les grains au début de chaque
     cycle de fermentation pour en avoir bien 100g.
   - Il n'est ni nécessaire ni contre-indiqué de rincer occasionellement les grains.
-  - Utiliser du sucre BIO, aussi peu transformé que possible.
-  - Préferer un citron BIO puisqu'on fait tremper y compris la peau.
-  - Noter les dates de début de chaque cycle.
-    Il ne faut pas laisser fermenter plus longtemps que nécessaire.
+  - Utiliser des ingrédients BIO, et du sucre aussi peu transformé que possible.
+  - Si votre eau est chlorée, laissez-la reposer 1h avant de commencer la préparation.
+  - Ne pas mettre plus que 100g de sucre, la fermentation deviendrait alcoolique.
+  - Ne pas laisser fermenter plus longtemps que nécessaire.
+  ]
 ][]
-#h(2.4mm)
-#step(width: 27%)[][
-  Neven Villani, \
-  le 16 Octobre 2024, \
-  à Saint Martin d'Hères
+#text(size: 11pt, fill: color.dim)[
+  Fait avec Typst: #link("https://github.com/vanille-n/kefir")[`github:vanille-n/kefir`]
+  #h(3.3cm)
+  v0.1
+  #h(3.3cm)
+  Neven Villani, à Saint Martin d'Hères
+]
 
-  #v(26mm)
+// Page 2
 
-  Fait avec Typst. \
-  #link("https://github.com/vanille-n/kefir")[`github:vanille-n/kefir`]
+#pagebreak()
+
+#v(2mm)
+#align(center)[
+  #text(size: 20pt)[
+    *Résumé du matériel nécessaire*
+  ]
+  (voir au dos pour les instructions détaillées)
+]
+#v(2mm)
+#step[
+  *En 1 exemplaire*
+][
+*Nécessaire*
+- balance
+*Recommandé*
+- passoire / filtre à grosses mailles
+- entonnoir
 ][]
+#step[
+  *Réutilisable*
+][
+*Nécessaire*
+- pot de confiture (occupé pendant les temps morts)
+- bocal d'au moins 2 à 2,5 litres (occupé pour 2 jours)
+- tissu / serviette en papier (occupé pour 2 jours)
+- 2L de bouteilles (occupées pour au moins 5 jours)
+][]
+
+#step[
+  *Consommable*
+][
+*Nécessaire*
+- sucre (100g/lot)
+- citron (1/lot)
+*Recommandé*
+- figues sèches (2/lot)
+- sirop (25g/lot)
+][
+  Sirops testés personellement: citron, anis, fruits rouges.
+  J'utilise du sucre de canne BIO au kilogramme.
+]
+#step[
+  *Note: délai et débit*
+][
+  #text(fill: color.dim)[
+    Si on produit en continu, avec un seul lot à la fois en première phase de fermentation,
+    on a un rythme de jusqu'à 1L/jour.
+    Avec 2j+2j de fermentation, et $>=3$j de maturation,
+    le délai de préparation à consommation est de 1 semaine,
+    dont 5 jours en bouteille.
+    Pour maintenir un tel rythme sans interruption il faut donc posséder
+    au moins 6 bouteilles de 1L, ou 9 bouteilles de 75cL.
+
+    Il est déconseillé de s'engager à ce rythme dès le début.
+    Moi-même je ne suis qu'à $approx$80% du débit maximum.
+  ]
+
+  #v(4.2cm)
+
+  #cetz.canvas({
+    import cetz.draw: *
+    scale(x: 90%)
+    let stroke = (stroke: 0.4pt)
+
+    line(name: "time", (0, 0), (21, 0), mark: (end: ">"), ..stroke)
+    content("time.end", anchor: "north", padding: 5pt)[jours]
+    for i in range(21) {
+      let hgt = if calc.rem(i, 7) == 0 {
+        0.1
+      } else {
+        0.05
+      }
+      line((i, -hgt), (i, hgt), ..stroke)
+    }
+
+    let batch(start, line) = {
+      let lower = line + 0.2
+      let upper = lower + 1 - 0.1
+      let begin = start
+      let mid1 = start + 2
+      let mid2 = mid1 + 2
+      let finish = mid2 + 3
+      rect(name: "p1", (begin, lower), (mid1, upper), radius: (north-west: 10pt), ..stroke)
+      rect(name: "p2", (mid1, lower), (mid2, upper), ..stroke)
+      rect(name: "p3", (mid2, lower), (finish, upper), radius: (south-east: 10pt), ..stroke)
+      content("p1.center")[#symbol("jug")]
+      content("p2.center")[#symbol("bottles")]
+      content("p3.center")[#symbol("bottles")#symbol("fridge")]
+    }
+    for i in range(4) {
+      batch(2*i, i)
+      batch(2*i + 8, i)
+    }
+
+    line(name: "sect", (6.5, 4.5), (6.5, -1), stroke: (paint: gray, dash: "dashed"))
+    content("sect.end", anchor: "west", padding: 5pt)[Au max: 1 bocal, 6L en bouteille dont 4L au frigo]
+  })
+][]
+
