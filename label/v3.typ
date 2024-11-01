@@ -1,7 +1,7 @@
 #set page(margin: (
   top: 1cm,
   bottom: 1cm,
-  x: 0.5cm,
+  x: 0.9cm,
 ))
 #import "@preview/cetz:0.3.1"
 
@@ -73,102 +73,128 @@
   }
 })
 
+#let centered-area(x: 0, y: 0, dx: 1, dy: 1) = {
+  import "draw.typ" as cz
+  let relative(abs, xfrac, yfrac) = {
+    cz.dp(abs, x: xfrac * dx, y: yfrac * dy)
+  }
+  let locate(xfrac, yfrac) = {
+    relative((x, y), xfrac, yfrac)
+  }
+  let box() = {
+    cz.rect(locate(-1, -1), locate(1, 1), stroke: (paint: red, thickness: 2pt))
+  }
+  (
+    locate: locate,
+    relative: relative,
+    box: box,
+  )
+}
+
 #let shape = {
   import cetz.draw: *
   (
     body: (
       anchors: area => {
         let loc = area.locate
-        xanchor("bd:|bot", loc(0, 0))
-        xanchor("bd:|top", loc(0, 1))
+        xanchor("bd:|bot", loc(-1, -1))
+        xanchor("bd:|top", loc(-1, 1))
         xanchor("bd:top|", loc(1, 1))
-        xanchor("bd:bot|", loc(1, 0))
-        xxanchor("bd:|lo", loc(0, 0.2))
-        xxanchor("bd:lo|", loc(1, 0.2))
-        xxanchor("bd:|hi", loc(0, 0.8))
-        xxanchor("bd:hi|", loc(1, 0.8))
-        xxxanchor("bd:|lo-", loc(0, 0.1))
-        xxxanchor("bd:lo-|", loc(1, 0.1))
-        xxxanchor("bd:|hi-", loc(0, 0.9))
-        xxxanchor("bd:hi-|", loc(1, 0.9))
-        xxxanchor("bd:<bot", loc(0.25, 0))
-        xxxanchor("bd:bot>", loc(0.75, 0))
+        xanchor("bd:bot|", loc(1, -1))
 
-        xanchor("tx:header", loc(0.5, 0.9))
-        xanchor("tx:body", loc(0.5, 0.5))
-        xanchor("tx:footer", loc(0.5, 0.12))
-      },
-      draw: area => {
-        merge-path({
-          line(
-            "hg:bot|",
-            "bd:hi-|", "bd:lo-|",
-            "bd:bot>", "bd:<bot",
-            "bd:|lo-", "bd:|hi-",
-            "hg:|bot",
-          )
-        })
-        line("bd:|lo", "bd:lo|")
-      },
-    ),
-    hanger: (
-      anchors: area => {
-        let loc = area.locate
-        xanchor("hg:|bot", loc(0, 0))
-        xanchor("hg:|top", loc(0, 1))
-        xanchor("hg:top|", loc(1, 1))
-        xanchor("hg:bot|", loc(1, 0))
-        xxanchor("hg:|lo", loc(0, 0.1))
-        xxanchor("hg:lo|", loc(1, 0.1))
-        xxanchor("hg:|hi", loc(0, 0.8))
-        xxanchor("hg:hi|", loc(1, 0.8))
+        xxanchor("bd:|lo", loc(-1, -0.5))
+        xxanchor("bd:lo|", loc(1, -0.5))
+
+        xanchor("tx:body", loc(0, 0.2))
+        xanchor("tx:footer", loc(0, -0.7))
       },
       draw: area => {
         let rel = area.relative
-        line("hg:|bot", "hg:|top", "hg:top|", "hg:bot|")
-        line("hg:|lo", rel((), 0.5, 0), rel((), 0, 0.1))
-        line("hg:hi|", rel((), -0.5, 0), rel((), 0, 0.05))
+        line("bd:|top", rel("bd:|bot", 0, 0.25))
+        line((), rel("bd:|bot", 0.5, 0))
+        line((), rel("bd:bot|", -0.5, 0))
+        line((), rel("bd:bot|", 0, 0.25))
+        line((), "bd:top|")
+
+        line("bd:|lo", "bd:lo|")
+      },
+    ),
+    neck: (
+      anchors: area => {
+        let loc = area.locate
+        let rel = area.relative
+        xanchor("nk:|top", loc(-0.5, 1))
+        xanchor("nk:top|", loc(0.5, 1))
+        xanchor("nk:|bot", loc(-1, -1))
+        xanchor("nk:bot|", loc(1, -1))
+
+        xanchor("tx:header", loc(0, -0.3))
+      },
+      draw: area => {
+        let rel = area.relative
+        line("nk:|bot", rel((), 0, 2/3))
+        line((), rel((), 1/2, 2/3))
+        line((), rel((), 0, 2/3))
+
+        line("nk:bot|", rel((), 0, 2/3))
+        line((), rel((), -1/2, 2/3))
+        line((), rel((), 0, 2/3))
+      },
+    ),
+    head: (
+      anchors: area => {
+        let loc = area.locate
+        xanchor("hd:|bot", loc(-1, -1))
+        xanchor("hd:|top", loc(-1, 1))
+        xanchor("hd:top|", loc(1, 1))
+        xanchor("hd:bot|", loc(1, -1))
+        xxanchor("hd:|hi", loc(-1, 0.6))
+        xxanchor("hd:hi|", loc(1, 0.6))
+      },
+      draw: area => {
+        let rel = area.relative
+        line("hd:|bot", "hd:|top", "hd:top|", "hd:bot|")
+        line("hd:|bot", rel((), 1, 0), rel((), 0, 0.2))
+        line("hd:hi|", rel((), -1, 0), rel((), 0, 0.1))
       }
     )
   )
 }
 
-#let make-area(x: 0, y: 0, dx: 1, dy: 1) = {
-  import "draw.typ" as cz
-  (
-    locate: (xfrac, yfrac) => {
-      cz.dp((x, y), x: xfrac * dx, y: yfrac * dy)
-    },
-    relative: (abs, xfrac, yfrac) => {
-      cz.dp(abs, x: xfrac * dx, y: yfrac * dy)
-    }
-  )
-}
-
 #let object() = {
   import "draw.typ" as cz
-  let body = (height: 7cm, width: 3cm)
-  let band = (height: 5.6cm, width: 1.5cm, overlap: 2cm)
-  cz.rect((-body.width/2 - 5mm, -body.height/2 - 5mm), (body.width/2 + 5mm, body.height / 2 + band.height + 5mm), stroke: none)
+  let body = (height: 5.6cm, width: 3cm)
+  let neck = (height: 2cm)
+  let head = (height: 4.9cm, width: 1.5cm)
 
-  let hanger-area = make-area(x: -band.width/2, y: body.height/2, dx: band.width, dy: band.height)
-  let body-area = make-area(x: -body.width/2, y: -body.height/2, dx: body.width, dy: body.height)
-  (shape.hanger.anchors)(hanger-area)
+  cz.crect(name: "box", (0, 0), dx: (body.width + 5mm) / 2, dy: (neck.height + body.height * 2 + 5mm) / 2, stroke: if preview { red } else { none })
+  let neck-area = centered-area(x: 0, y: 0, dx: body.width / 2, dy: neck.height / 2)
+  let body-area = centered-area(x: 0, y: -(body.height + neck.height) / 2, dx: body.width / 2, dy: body.height / 2)
+  let head-area = centered-area(x: 0, y: (head.height + neck.height) / 2, dx: head.width / 2, dy: head.height / 2)
+  if preview {
+  //  (neck-area.box)()
+  //  (body-area.box)()
+  //  (head-area.box)()
+  }
+  (shape.neck.anchors)(neck-area)
+  (shape.head.anchors)(head-area)
   (shape.body.anchors)(body-area)
-  (shape.hanger.draw)(hanger-area)
+  (shape.head.draw)(head-area)
+  (shape.neck.draw)(neck-area)
   (shape.body.draw)(body-area)
   cz.content("tx:header")[#align(center)[#writing.header]]
   cz.content("tx:footer")[#align(center)[#writing.footer]]
   cz.content("tx:body")[#align(center)[#writing.body]]
 }
 
+
 // Page layout
 
 #{
   if preview {
-    cetz.canvas({
+    box[#cetz.canvas({
       object()
-    })
+    })]
     pagebreak()
   }
 }
@@ -176,16 +202,15 @@
 #{
   let imax = 2
   let jmax = 4
-  let dx = 2.28cm
+  let dx = 2.25cm
   let deltay = 14.5cm
-  let packing-dy = -7mm
 
   for i in range(imax) {
     for j in range(jmax) {
       place(dy: i*deltay, dx: (2*j)*dx)[
         #cetz.canvas({ object() })
       ]
-      place(dy: i*deltay + packing-dy, dx: (2*j+1)*dx)[#rotate(180deg)[
+      place(dy: i*deltay, dx: (2*j+1)*dx)[#rotate(180deg)[
         #cetz.canvas({ object() })
       ]]
     }
