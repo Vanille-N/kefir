@@ -1,5 +1,5 @@
 default:
-  typst compile v3.typ
+  typst compile packed.typ
 
 watch:
-  typst watch v3.typ
+  typst watch packed.typ
