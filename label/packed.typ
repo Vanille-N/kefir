@@ -47,6 +47,16 @@
   ],
 )
 
+#let verso-writing = (
+  header: [],
+  footer: [],
+  body: rotate(90deg)[
+    Recette d'origine: anonyme \
+    Explications: Neven Villani \
+    `github:vanille-n/kefir`
+  ],
+)
+
 #let my-outline = {
   (
     head: "circular",
@@ -64,20 +74,33 @@
   my-outline,
 )
 
-#{
+#let packed(obj, parity: false) = {
   let imax = 2
   let jmax = 4
   let dx = 2.25cm
   let deltay = 14.5cm
 
+  let default_rot = if parity { 180deg } else { 0deg }
+
   for i in range(imax) {
     for j in range(jmax) {
-      place(dy: i*deltay, dx: (2*j)*dx)[
-        #cetz.canvas({ flex.object(writing, my-outline) })
-      ]
-      place(dy: i*deltay, dx: (2*j+1)*dx)[#rotate(180deg)[
-        #cetz.canvas({ flex.object(writing, my-outline) })
+      place(center + horizon, dy: ((imax - 1)/2 - i)*deltay, dx: (jmax - 0.5 - (2*j))*dx)[#rotate(default_rot)[
+        #obj
+      ]]
+      place(center + horizon, dy: ((imax - 1)/2 - i)*deltay, dx: (jmax - 0.5 - (2*j+1))*dx)[#rotate(default_rot + 180deg)[
+        #obj
       ]]
     }
   }
 }
+
+#packed(
+  cetz.canvas({ flex.object(writing, my-outline) })
+)
+#if not flex.preview.verso {
+  pagebreak()
+}
+#packed(
+  cetz.canvas({ flex.object(verso-writing, (:)) }),
+  parity: not flex.preview.verso,
+)

@@ -1,17 +1,19 @@
 #import "@preview/cetz:0.3.1"
 
-#let make-preview(anchors: false, singleton: false, box: false) = {
+#let make-preview(anchors: false, singleton: false, box: false, verso: false) = {
   (
     anchors: anchors,
     singleton: singleton,
     box: box,
-    any: anchors or singleton or box,
+    verso: verso,
+    any: anchors or singleton or box or verso,
   )
 }
 
 #let preview = make-preview(
-  anchors: true,
-  singleton: true,
+  anchors: false,
+  singleton: false,
+  verso: false,
   box: false,
 )
 
@@ -260,7 +262,12 @@
 
   let fetch(label) = {
     let default = outline_kind.at("default", default: none)
-    outline.at(outline_kind.at(label, default: default)).at(label)
+    let kind = outline_kind.at(label, default: default)
+    if kind != none {
+      outline.at(kind).at(label)
+    } else {
+      (_) => {}
+    }
   }
 
   (anchors.head)(head-area)
