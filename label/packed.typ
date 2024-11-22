@@ -48,20 +48,19 @@
 )
 
 #let my-outline = {
-  let ol = flex.outline
   (
-    head: ol.circular.head,
-    incision: ol.rounded.incision,
-    neck: ol.rounded.neck,
-    body: ol.blocky.body,
+    head: "circular",
+    incision: "rounded",
+    neck: "rounded",
+    body: "blocky",
   )
 }
 
 #flex.examples(writing, 
-  flex.outline.blocky,
-  flex.outline.sharp,
-  flex.outline.rounded,
-  flex.outline.circular,
+  (default: "blocky"),
+  (default: "sharp"),
+  (default: "rounded"),
+  (default: "circular"),
   my-outline,
 )
 

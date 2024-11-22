@@ -242,7 +242,7 @@
   )
 }
 
-#let object(writing, outline) = {
+#let object(writing, outline_kind) = {
   import "draw.typ" as cz
   let body = (height: 5.6cm, width: 3cm)
   let neck = (height: 2cm)
@@ -258,17 +258,22 @@
     (head-area.box)()
   }
 
+  let fetch(label) = {
+    let default = outline_kind.at("default", default: none)
+    outline.at(outline_kind.at(label, default: default)).at(label)
+  }
+
   (anchors.head)(head-area)
-  (outline.head)(head-area)
+  fetch("head")(head-area)
 
   (anchors.neck)(neck-area)
-  (outline.neck)(neck-area)
+  fetch("neck")(neck-area)
 
   (anchors.body)(body-area)
-  (outline.body)(body-area)
+  fetch("body")(body-area)
 
   (anchors.incision)(head-area)
-  (outline.incision)(head-area)
+  fetch("incision")(head-area)
 
   cz.content("tx:header")[#align(center)[#writing.header]]
   cz.content("tx:footer")[#align(center)[#writing.footer]]
@@ -280,10 +285,14 @@
 
 #let examples(writing, ..outlines) = {
   if preview.singleton {
+    [= Samples]
     for outline in outlines.pos() {
-      box[#cetz.canvas({
-        object(writing, outline)
-      })]
+      box[
+        #cetz.canvas({
+          object(writing, outline)
+        })
+        #text(size: 9pt)[#outline]
+      ]
     }
     pagebreak()
   }
