@@ -4,6 +4,7 @@
   x: 0.9cm,
 ))
 #import "@preview/cetz:0.3.1"
+#import "@preview/cades:0.3.0": qr-code
 
 #import "flex.typ"
 
@@ -51,9 +52,10 @@
   header: [],
   footer: [],
   body: rotate(90deg)[
-    Recette d'origine: anonyme \
-    Explications: Neven Villani \
-    `github:vanille-n/kefir`
+    #table(columns: 2, stroke: none, align: horizon,
+      [Neven Villani \ `github:vanille-n/kefir`],
+      qr-code("https://github.com/vanille-n/kefir", width: 2.3cm),
+    )
   ],
 )
 
