@@ -1,4 +1,5 @@
 #import "@preview/cetz:0.3.0"
+#import "@preview/cades:0.3.0": qr-code
 
 #let preview = false
 
@@ -197,24 +198,30 @@
   (voir au dos pour les instructions détaillées)
 ]
 #v(2mm)
-#step[
-  *En 1 exemplaire*
+#table(columns: (60%, 40%), inset: 0pt, stroke: none)[
+  #step[
+    *En 1 exemplaire*
+  ][
+  *Nécessaire*
+  - balance
+  *Recommandé*
+  - passoire / filtre à grosses mailles
+  - entonnoir
+  ][]
+  #step[
+    *Réutilisable*
+  ][
+  *Nécessaire*
+  - pot de confiture (occupé pendant les temps morts)
+  - bocal d'au moins 2 à 2,5 litres (occupé pour 2 jours)
+  - tissu / serviette en papier (occupé pour 2 jours)
+  - 2L de bouteilles (occupées pour au moins 5 jours)
+  ][]
 ][
-*Nécessaire*
-- balance
-*Recommandé*
-- passoire / filtre à grosses mailles
-- entonnoir
-][]
-#step[
-  *Réutilisable*
-][
-*Nécessaire*
-- pot de confiture (occupé pendant les temps morts)
-- bocal d'au moins 2 à 2,5 litres (occupé pour 2 jours)
-- tissu / serviette en papier (occupé pour 2 jours)
-- 2L de bouteilles (occupées pour au moins 5 jours)
-][]
+  #align(center + horizon)[
+    #qr-code("https://test.com", width: 4cm)
+  ]
+]
 
 #step[
   *Consommable*
