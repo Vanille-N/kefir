@@ -1,4 +1,6 @@
-default:
+default: compile
+
+compile:
   typst compile packed.typ
 
 watch:
