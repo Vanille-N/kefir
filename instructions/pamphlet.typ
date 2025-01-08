@@ -234,7 +234,7 @@
 - sirop (25g/lot)
 ][
   Sirops testés personellement: citron, anis, fruits rouges.
-  J'utilise du sucre de canne BIO au kilogramme.
+  J'utilise du sucre de canne BIO pur.
 ]
 #step[
   *Note: délai et débit*
