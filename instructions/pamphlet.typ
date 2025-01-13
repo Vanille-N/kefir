@@ -83,13 +83,13 @@
 }
 
 #step[
-  *0. Conservation* $(#symbol("jam") <- #symbol("water") + #symbol("sugar")"1cas" : #symbol("fridge") ; #symbol("timer") <"7j")$
+  *0. Conservation* $(#symbol("jam") <- #symbol("water") + #symbol("sugar")"1cas" : #symbol("fridge") ; #symbol("timer") <"1-2sem")$
 ][
-  Durée: 1 semaine au plus \
+  Durée: quelques semaines au plus \
   Au frigo, dans un bocal hermétique (e.g. pot de confiture).
 ][
   Mettre juste assez d'eau pour submerger les grains,
-  dissoudre 1 cuillère à soupe de sucre. \
+  dissoudre 1 cuillère de sucre par semaine. \
 ]
 #step[
   *1. Préparation* $(#symbol("jug") <- #symbol("water")"2L" + #symbol("sugar")"100g" + #symbol("lemon") + #symbol("fig"))$
@@ -116,7 +116,7 @@
 #step[
   *2. Fermentation 1* $(#symbol("jug"): #symbol("timer")"48h")$
 ][
-  Durée: 48h \
+  Durée: *48h* (optionnellement un peu plus si il fait froid) \
   Température ambiante, non hermétique, à l'abri du soleil.
 ][
   Des petites bulles se forment, mais la pression n'augmente pas.
@@ -147,7 +147,7 @@
 #step[
   *4. Fermentation 2* $(#symbol("bottles"): #symbol("timer")"48h")$
 ][
-  Durée: 48h \
+  Durée: *48h* (optionnellement un peu plus si il fait froid) \
   Température ambiante, bouteille hermétique, à l'abri du soleil.
 ][
   Attention, dorénavant les bouteilles sont sous pression.
@@ -157,11 +157,12 @@
 #step[
   *5. Maturation* $(#symbol("bottles"): #symbol("fridge") ; #symbol("timer")>"3j")$
 ][
-  Durée: au moins 3 jours \
+  Durée: *48h* (flexible) \
   Au frigo, toujours en bouteille.
 ][
   La fermentation est terminée.
-  Peut se conserver au frigo jusqu'à 1 mois, ou 1 semaine après ouverture.
+  Peut se conserver au frigo jusqu'à 1 mois.
+  Pétillant au plus quelques jours après ouverture.
 ]
 #step[
   *Remarques*
@@ -175,13 +176,13 @@
   - Utiliser des ingrédients BIO, et du sucre aussi peu transformé que possible.
   - Si votre eau est chlorée, laissez-la reposer 1h avant de commencer la préparation.
   - Ne pas mettre plus que 100g de sucre, la fermentation deviendrait alcoolique.
-  - Ne pas laisser fermenter plus longtemps que nécessaire.
+  - Ne pas laisser fermenter plus longtemps que nécessaire (étapes 2 et 4 ne doivent pas dépasser 72h chacune).
   ]
 ][]
 #text(size: 11pt, fill: color.dim)[
   Fait avec Typst: #link("https://github.com/vanille-n/kefir")[`github:vanille-n/kefir`]
   #h(3.3cm)
-  v0.1
+  v0.2
   #h(3.3cm)
   Neven Villani, à Saint Martin d'Hères
 ]
@@ -233,7 +234,8 @@
 - figues sèches (2/lot)
 - sirop (25g/lot)
 ][
-  Sirops testés personellement: citron, anis, fruits rouges.
+  Sirops testés personellement: citron, anis, fruits rouges, vanille.
+
   J'utilise du sucre de canne BIO pur.
 ]
 #step[
@@ -242,17 +244,17 @@
   #text(fill: color.dim)[
     Si on produit en continu, avec un seul lot à la fois en première phase de fermentation,
     on a un rythme de jusqu'à 1L/jour.
-    Avec 2j+2j de fermentation, et $>=3$j de maturation,
-    le délai de préparation à consommation est de 1 semaine,
-    dont 5 jours en bouteille.
+    Avec 2j+2j de fermentation, et $>=2$j de maturation,
+    le délai de préparation à consommation est de 6 jours,
+    dont 4 jours en bouteille.
     Pour maintenir un tel rythme sans interruption il faut donc posséder
-    au moins 6 bouteilles de 1L, ou 9 bouteilles de 75cL.
+    au moins 5 à 6 bouteilles de 1L, ou 9 bouteilles de 75cL.
 
     Il est déconseillé de s'engager à ce rythme dès le début.
-    Moi-même je ne suis qu'à $approx$80% du débit maximum.
+    Commencez par vous familiariser avec le processus, et n'hésitez pas à expérimenter.
   ]
 
-  #v(4.2cm)
+  #v(3.8cm)
 
   #cetz.canvas({
     import cetz.draw: *
@@ -290,7 +292,7 @@
     }
 
     line(name: "sect", (6.5, 4.5), (6.5, -1), stroke: (paint: gray, dash: "dashed"))
-    content("sect.end", anchor: "west", padding: 5pt)[Au max: 1 bocal, 6L en bouteille dont 4L au frigo]
+    content("sect.end", anchor: "west", padding: 5pt)[Au max: 1 bocal, 5-6L en bouteille dont 3-4L au frigo]
   })
 ][]
 
