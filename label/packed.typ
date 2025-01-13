@@ -37,13 +37,14 @@
   ],
   body: (font.body)[
     #(font.footer)[Parfum:] ........... \
-    #(font.footer)[Mis en bouteille:] \
-    #v(-4mm) #{date-format} \
+    #v(-4mm) #(font.footer)[Teneur:] .......#(font.footer)[g/L] \
+    #v(-4mm) #(font.footer)[Mise en bouteille:] \
+    #v(-5mm) #{date-format} \
     #(font.footer)[Fin de maturation:] \
-    #v(-4mm) #{date-format} \
+    #v(-5mm) #{date-format} \
     #(font.footer)[
-      Sous pression. \
-      #v(-4mm) Ne pas agiter.
+      *Sous pression.* \
+      #v(-4mm) *Ne pas agiter.*
     ]
   ],
 )

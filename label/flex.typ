@@ -82,11 +82,11 @@
       xanchor("top>", loc(1, 1))
       xanchor("bot>", loc(1, -1))
 
-      xxanchor("<mid", xrel(loc(-1, -1), 0, 1))
-      xxanchor("mid>", xrel(loc(1, -1), 0, 1))
+      xxanchor("<mid", xrel(loc(-1, -1), 0, 0.7))
+      xxanchor("mid>", xrel(loc(1, -1), 0, 0.7))
 
-      xanchor("tx:body", loc(0, 0.3))
-      xanchor("tx:footer", loc(0, -0.7))
+      xanchor("tx:body", loc(0, 0.15))
+      xanchor("tx:footer", loc(0, -0.8))
     },
     neck: area => {
       let (loc, rel) = area
