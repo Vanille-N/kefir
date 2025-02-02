@@ -2,6 +2,9 @@
 
 Recette de limonade maison.
 
+Si vous êtes juste ici pour une recette, vous êtes au bon endroit!
+Il vous suffit d'imprimer [ce document](https://github.com/Vanille-N/kefir/blob/master/instructions/pamphlet.pdf).
+
 ## Dépendances
 
 Il vous faut acquérir des [grains de kéfir de fruits](https://fr.wikipedia.org/wiki/K%C3%A9fir_de_fruits).
@@ -30,7 +33,7 @@ Si vous avez [`just`](https://github.com/casey/just?tab=readme-ov-file) vous pou
 via `$ just` dans n'importe lequel des deux sous-dossiers.
 La sortie sera un fichier PDF 2 pages fait pour être imprimé en recto-verso.
 
-## Recette
+## Alternatives
 
 La recette est adaptée de celle qui m'a été donnée avec mon propre lot de départ de grains.
 Il existe des variantes:
