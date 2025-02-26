@@ -155,9 +155,9 @@
 ]
 
 #step[
-  *5. Maturation* $(#symbol("bottles"): #symbol("fridge") ; #symbol("timer")>"3j")$
+  *5. Maturation* $(#symbol("bottles"): #symbol("fridge") ; #symbol("timer")>"48h")$
 ][
-  Durée: *48h* (flexible) \
+  Durée: *48h* (flexible, plus long = bulles mieux dissoutes) \
   Au frigo, toujours en bouteille.
 ][
   La fermentation est terminée.

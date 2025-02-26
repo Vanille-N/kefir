@@ -53,9 +53,10 @@
   header: [],
   footer: [],
   body: rotate(90deg)[
-    #table(columns: 2, stroke: none, align: horizon,
+    #table(columns: 3, stroke: none, align: horizon,
       [Neven Villani \ `github:vanille-n/kefir`],
       qr-code("https://github.com/vanille-n/kefir", width: 2.3cm),
+      h(1cm),
     )
   ],
 )
