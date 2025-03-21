@@ -169,14 +169,12 @@
 ][
   #text(fill: color.dim)[
   - À l'issue d'un cycle de fermentation, on obtient environ 130-140g de grains pour 100g au départ.
-    Cela veut dire que tous les 3 cycles environ on peut faire don d'un lot.
-    Cela signifie également qu'il faut repeser les grains au début de chaque
-    cycle de fermentation pour en avoir bien 100g.
   - Il n'est ni nécessaire ni contre-indiqué de rincer occasionellement les grains.
   - Utiliser des ingrédients BIO, et du sucre aussi peu transformé que possible.
   - Si votre eau est chlorée, laissez-la reposer 1h avant de commencer la préparation.
   - Ne pas mettre plus que 100g de sucre, la fermentation deviendrait alcoolique.
   - Ne pas laisser fermenter plus longtemps que nécessaire (étapes 2 et 4 ne doivent pas dépasser 72h chacune).
+  - Il est envisageable de mettre 2-3 grains dans la bouteille pour la Fermentation 2 si le résidu seul ne suffit pas.
   ]
 ][]
 #text(size: 11pt, fill: color.dim)[
@@ -234,7 +232,7 @@
 - figues sèches (2/lot)
 - sirop (25g/lot)
 ][
-  Sirops testés personellement: citron, anis, fruits rouges, vanille.
+  Sirops testés personellement: anis, fraise, citron, fruits rouges, vanille.
 
   J'utilise du sucre de canne BIO pur.
 ]
