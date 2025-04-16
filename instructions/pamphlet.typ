@@ -168,7 +168,7 @@
   *Remarques*
 ][
   #text(fill: color.dim)[
-  - À l'issue d'un cycle de fermentation, on obtient environ 130-140g de grains pour 100g au départ.
+  - À l'issue d'un cycle de fermentation, on obtient environ 110-130g de grains pour 100g au départ.
   - Il n'est ni nécessaire ni contre-indiqué de rincer occasionellement les grains.
   - Utiliser des ingrédients BIO, et du sucre aussi peu transformé que possible.
   - Si votre eau est chlorée, laissez-la reposer 1h avant de commencer la préparation.
@@ -180,7 +180,7 @@
 #text(size: 11pt, fill: color.dim)[
   Fait avec Typst: #link("https://github.com/vanille-n/kefir")[`github:vanille-n/kefir`]
   #h(3.3cm)
-  v0.2
+  v0.3
   #h(3.3cm)
   Neven Villani, à Saint Martin d'Hères
 ]
@@ -232,7 +232,7 @@
 - figues sèches (2/lot)
 - sirop (25g/lot)
 ][
-  Sirops testés personellement: anis, fraise, citron, fruits rouges, vanille.
+  Sirops testés personellement: anis, fraise, citron, fruits rouges, vanille, pamplemousse.
 
   J'utilise du sucre de canne BIO pur.
 ]
